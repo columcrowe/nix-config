@@ -13,7 +13,6 @@
     keyMap = "ie";
     useXkbConfig = false; # use xkb.options in tty.
   };
-  services.xserver.xkb.layout = "ie"; #before niri
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.columcc = {
