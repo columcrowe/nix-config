@@ -15,7 +15,7 @@
   ];
   programs.git ={
     enable = true;
-    userName = "colum.crowe";
+    userName = "columcrowe";
     userEmail = "colum.crowe@gmail.com";
   };
   programs.fuzzel.enable = true;
