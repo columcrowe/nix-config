@@ -1,18 +1,19 @@
+{ ... }: 
 {
   disko.devices.disk.main = {
-    device = "/dev/sdc";
+    device = "/dev/sdd"; #TODO: overwrite this value from the commandline
     type = "disk";
     content = {
       type = "gpt";
       partitions = {
-        boot = {
+        ESP = {
           type = "EF00";
           size = "512M";
           content = {
             type = "filesystem";
             format = "vfat";
             mountpoint = "/boot";
-            mountOptions = [ "fmask=0077" "dmask=0077" ];
+            mountOptions = [ "umask=0077" ];
           };
         };
         root = {
