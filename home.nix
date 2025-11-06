@@ -12,6 +12,7 @@
     strace
     usbutils
     nautilus
+    devenv
   ];
   programs.git ={
     enable = true;
@@ -21,6 +22,17 @@
   programs.fuzzel.enable = true;
   programs.alacritty.enable = true;
   programs.waybar.enable = true;
+  home.pointerCursor = {
+    enable = true;
+    name = "Vanilla-DMZ";
+    size = 24;
+    package = pkgs.vanilla-dmz;
+  };
+  services.wlsunset = {
+    enable = true;
+    latitude = 53.35;
+    longitude = 6.26;
+  };
   programs.bash.enable = true;
   programs.bash.profileExtra = ''
     if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then

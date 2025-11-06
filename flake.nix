@@ -8,6 +8,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
     niri.url = "github:sodiboo/niri-flake";
+    
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
@@ -41,6 +44,11 @@
         ./default.nix
         ./hosts/pc/configuration.nix
         ({ ... }: {networking.hostName = "pc"; })
+        disko.nixosModules.disko
+        ./hosts/pc/disk-configuration.nix
+        {
+          _module.args.disks = [ "/dev/sdX" ];
+        }
       ];
     };
 

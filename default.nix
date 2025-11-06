@@ -3,7 +3,8 @@
 {
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
+  nix.settings.trusted-users = [ "root" "columcc" ];
+  
   # Set your time zone.
   time.timeZone = "Europe/Dublin";
   # Select internationalisation properties.

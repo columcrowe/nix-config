@@ -1,4 +1,4 @@
-{ ... }: 
+{ disks ? [ "/dev/sdX" ], ... }:
 {
   disko.devices.disk.main = {
     device = "/dev/sdd"; #TODO: overwrite this value from the commandline
