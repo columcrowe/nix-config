@@ -19,6 +19,7 @@
     userName = "columcrowe";
     userEmail = "colum.crowe@gmail.com";
   };
+  programs.neovim.enable = true;
   programs.fuzzel.enable = true;
   programs.alacritty.enable = true;
   programs.waybar.enable = true;
