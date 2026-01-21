@@ -20,7 +20,7 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.wireless.iwd.enable = true; # Faster
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-  # networking.networkmanager.wifi.backend = "iwd";
+  networking.networkmanager.wifi.backend = "iwd";
   networking.firewall.enable = false;
   
   hardware.bluetooth.enable = true;
