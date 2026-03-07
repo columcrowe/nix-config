@@ -8,13 +8,17 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
     niri.url = "github:sodiboo/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixpkgs";
+    
+    qtile.url = "github:qtile/qtile";
+    qtile.inputs.nixpkgs.follows = "nixpkgs";
     
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, niri, disko, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, niri, qtile, disko, ... }: {
 
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem rec {
       specialArgs = { inherit inputs; };
@@ -23,6 +27,12 @@
         ./hosts/laptop/configuration.nix
         niri.nixosModules.niri #has to be system
         ({ ... }: {programs.niri.enable = true; })
+        #({...}: {services.xserver = {
+        #  enable = true;
+        #  windowManager.qtile = {
+        #    enable = true;
+        #  };
+        #}; })
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

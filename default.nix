@@ -18,9 +18,8 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.columcc = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "docker" "incus-admin"]; # Enable ‘sudo’ for the user.
   };
-
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [

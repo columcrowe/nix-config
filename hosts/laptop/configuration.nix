@@ -25,7 +25,7 @@
   
   hardware.bluetooth.enable = true;
 
-  services.xserver.xkb.layout = "ie"; #before niri
+  services.xserver.xkb.layout = "ie"; #before wm
 
   # Enable sound.
   services.pipewire = {
@@ -39,6 +39,7 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     brightnessctl
+    neovim
   ];
 
   services.gvfs.enable = true; #for nautilus bin
@@ -46,6 +47,16 @@
   services.printing.enable = true;
   virtualisation.docker.enable = true;
   #virtualisation.libvirtd = true;
+  #services.tailscale = {
+  #  enable = true;
+  #  authKey = "<tskey->";
+  #  autoStart = true;
+  #};
+  virtualisation.incus.enable = true;
+  networking.nftables.enable = true;
+  # KVM support for incus --vm, need to enable SVM in BIOS
+  virtualisation.libvirtd.enable = true;
+  boot.kernelModules = [ "kvm" "kvm_amd" ]; # AMD cpu
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
