@@ -56,7 +56,7 @@
         backlight = {
           device = "amdgpu_bl1";
           format = "☀ {percent}%";
-          scroll-step = 5;
+          scroll-step = 1;
         };
 
         battery = {

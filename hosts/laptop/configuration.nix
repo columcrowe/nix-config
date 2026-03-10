@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
     ];
 
+  ## Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 3;
@@ -16,23 +17,27 @@
   systemd.tpm2.enable = false; #stop timeout
   boot.initrd.systemd.tpm2.enable = false;
 
+  ## Networking
   networking.hostName = "laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.wireless.iwd.enable = true; # Faster
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.networkmanager.wifi.backend = "iwd";
   networking.firewall.enable = false;
-  
+ 
+  ## Bluetooth
   hardware.bluetooth.enable = true;
 
+  ## Keyboard
   services.xserver.xkb.layout = "ie"; #before wm
 
-  # Enable sound.
+  ## Sound
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
 
+  ## Brightness
   programs.light.enable = true;
 
   # List packages installed in system profile.
@@ -46,22 +51,23 @@
   services.openssh.enable = true;
   services.printing.enable = true;
   virtualisation.docker.enable = true;
-  #virtualisation.libvirtd = true;
+  #virtualisation.libvirtd = true; #enable KVM support for docker, need to enable SVM in BIOS (AMD-V) 
   #services.tailscale = {
   #  enable = true;
   #  authKey = "<tskey->";
   #  autoStart = true;
   #};
   virtualisation.incus.enable = true;
+  virtualisation.incus.package = pkgs.incus; #use unstable as default is -lts
   networking.nftables.enable = true;
   # KVM support for incus --vm, need to enable SVM in BIOS
   virtualisation.libvirtd.enable = true;
-  boot.kernelModules = [ "kvm" "kvm_amd" ]; # AMD cpu
+  boot.kernelModules = [ "kvm" "kvm_amd" ]; # AMD cpu (_intel)
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
+  #system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
