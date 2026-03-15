@@ -45,6 +45,7 @@
   environment.systemPackages = with pkgs; [
     brightnessctl
     neovim
+    bluetui
   ];
 
   services.gvfs.enable = true; #for nautilus bin

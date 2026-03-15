@@ -33,34 +33,41 @@
         height = 26;
 
         modules-left = [ "niri/workspaces" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "network" "pulseaudio" "backlight" "battery" ];
+        #modules-center = [ "clock" ];
+        modules-right = [ "network" "bluetooth" "pulseaudio" "backlight" "battery" "clock"];
 
         clock = {
           format = "{:%H:%M}";
+          tooltip-format = "{:%Y-%m-%d}";
         };
 
         network = {
-          format-wifi = "wifi {essid}";
-          format-ethernet = "eth";
-          format-disconnected = "offline";
-          tooltip = false;
+          format-wifi = "🛜:wifi";
+          format-ethernet = "🛜:eth";
+          format-disconnected = "🛜:offline";
+          tooltip-format = "{essid}";
           on-click = "alacritty -e nmtui";
         };
 
+        bluetooth = {
+          format = "ᛒ:{status}";
+          tooltip = false;
+          on-click = "alacritty -e bluetui";
+        };
+
         pulseaudio = {
-          format = "vol {volume}%";
-          scroll-step = 5;
+          format = "🔊:{volume}%";
+          scroll-step = 1;
         };
 
         backlight = {
           device = "amdgpu_bl1";
-          format = "☀ {percent}%";
+          format = "🔆:{percent}%";
           scroll-step = 1;
         };
 
         battery = {
-          format = "{capacity}%";
+          format = "🔋:{capacity}%";
         };
       };
     };
@@ -78,10 +85,12 @@
 
       #clock,
       #network,
+      #bluetooth,
       #pulseaudio,
       #battery,
       #backlight {
-        padding: 0 8px;
+        padding: 0 6px;
+        margin: 0px;
       }
 
       #workspaces button {
@@ -89,9 +98,6 @@
         color: #dddddd;
       }
 
-      #workspaces button.focused {
-        background: #444444;
-      }
     '';
   };
   home.pointerCursor = {
