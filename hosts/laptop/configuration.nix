@@ -44,9 +44,9 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     brightnessctl
-    neovim
     bluetui
   ];
+  #programs.nix-ld.enable = true;
 
   services.gvfs.enable = true; #for nautilus bin
   services.openssh.enable = true;

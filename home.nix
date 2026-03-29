@@ -12,7 +12,7 @@
     strace
     usbutils
     nautilus
-    devenv
+    #devenv
   ];
   programs.git ={
     enable = true;
@@ -119,6 +119,7 @@
       loginctl session-status
       echo "runtime: $XDG_RUNTIME_DIR"
       ls -ld $XDG_RUNTIME_DIR
+      echo "display: $DISPLAY"
       export XDG_RUNTIME_DIR="/run/user/$(id -u)"
       export DISPLAY=":0"
       export NIXOS_OZONE_WL="1"
