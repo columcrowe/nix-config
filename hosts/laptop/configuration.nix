@@ -38,7 +38,7 @@
   };
 
   ## Brightness
-  programs.light.enable = true;
+  # programs.light.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
