@@ -16,13 +16,19 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    stratoshark.url = "path:/home/columcc/nixpkgs/stratoshark";
+    stratoshark.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, niri, qtile, disko, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, niri, qtile, disko, stratoshark,... }: {
 
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem rec {
       specialArgs = { inherit inputs; };
       modules = [
+        { nixpkgs.overlays = [ stratoshark.overlays.default ]; }
+        stratoshark.nixosModules.stratoshark
+        ({...}: { programs.stratoshark.enable = true; })
         ./default.nix
         ./hosts/laptop/configuration.nix
         niri.nixosModules.niri #has to be system

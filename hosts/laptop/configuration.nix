@@ -47,6 +47,7 @@
     bluetui
   ];
   #programs.nix-ld.enable = true;
+  programs.wireshark.enable = true;
 
   services.gvfs.enable = true; #for nautilus bin
   services.openssh.enable = true;

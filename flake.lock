@@ -157,7 +157,25 @@
         "home-manager": "home-manager",
         "niri": "niri",
         "nixpkgs": "nixpkgs",
-        "qtile": "qtile"
+        "qtile": "qtile",
+        "stratoshark": "stratoshark"
+      }
+    },
+    "stratoshark": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776614224,
+        "narHash": "sha256-LWfx5KbbsCgxp8JepU/Iyd0PTc8VJjDs/VgKc/V4hx4=",
+        "path": "/home/columcc/nixpkgs/stratoshark",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/columcc/nixpkgs/stratoshark",
+        "type": "path"
       }
     },
     "xwayland-satellite-stable": {
