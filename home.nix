@@ -27,6 +27,10 @@
     withRuby = false;
     withPython3 = true;
   };
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode;
+  };
   programs.fuzzel.enable = true;
   programs.alacritty.enable = true;
   #programs.waybar.enable = true;
@@ -43,20 +47,16 @@
   };
   programs.bash.enable = true;
   programs.bash.profileExtra = ''
-    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-      echo "runtime: $XDG_RUNTIME_DIR"
-      echo "display: $DISPLAY"
-      export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    if [ -z "$DISPLAY" ]; then
       export DISPLAY=":0"
       export NIXOS_OZONE_WL="1"
-      echo "runtime: $XDG_RUNTIME_DIR"
-      echo "display: $DISPLAY"
       echo starting
       exec niri-session
     fi
   '';
   #programs.bash.profileExtra = ''
-  #  if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then 
+  #  if [ -z "$DISPLAY" ]; then 
+  ##    export DISPLAY=":0"
   #    export NIXOS_OZONE_WL="1"
   #    echo starting
   #    exec qtile start -b wayland
