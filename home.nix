@@ -13,93 +13,23 @@
     usbutils
     nautilus
     #devenv
+  ];  
+  imports = [
+    ./programs/waybar.nix
   ];
   programs.git ={
     enable = true;
-    userName = "columcrowe";
-    userEmail = "colum.crowe@gmail.com";
+    settings.user.name = "columcrowe";
+    settings.user.email = "colum.crowe@gmail.com";
   };
-  programs.neovim.enable = true;
+  programs.neovim ={
+    enable = true;
+    withRuby = false;
+    withPython3 = true;
+  };
   programs.fuzzel.enable = true;
   programs.alacritty.enable = true;
   #programs.waybar.enable = true;
-  programs.waybar = {
-    enable = true;
-
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        height = 26;
-
-        modules-left = [ "niri/workspaces" ];
-        #modules-center = [ "clock" ];
-        modules-right = [ "network" "bluetooth" "pulseaudio" "backlight" "battery" "clock"];
-
-        clock = {
-          format = "{:%H:%M}";
-          tooltip-format = "{:%Y-%m-%d}";
-        };
-
-        network = {
-          format-wifi = "🛜:wifi";
-          format-ethernet = "🛜:eth";
-          format-disconnected = "🛜:offline";
-          tooltip-format = "{essid}";
-          on-click = "alacritty -e nmtui";
-        };
-
-        bluetooth = {
-          format = "ᛒ:{status}";
-          tooltip = false;
-          on-click = "alacritty -e bluetui";
-        };
-
-        pulseaudio = {
-          format = "🔊:{volume}%";
-          scroll-step = 1;
-        };
-
-        backlight = {
-          device = "amdgpu_bl1";
-          format = "🔆:{percent}%";
-          scroll-step = 1;
-        };
-
-        battery = {
-          format = "🔋:{capacity}%";
-        };
-      };
-    };
-
-    style = ''
-      * {
-        font-family: monospace;
-        font-size: 12px;
-      }
-
-      window#waybar {
-        background: #1e1e1e;
-        color: #dddddd;
-      }
-
-      #clock,
-      #network,
-      #bluetooth,
-      #pulseaudio,
-      #battery,
-      #backlight {
-        padding: 0 6px;
-        margin: 0px;
-      }
-
-      #workspaces button {
-        padding: 0 6px;
-        color: #dddddd;
-      }
-
-    '';
-  };
   home.pointerCursor = {
     enable = true;
     name = "Vanilla-DMZ";
@@ -114,15 +44,13 @@
   programs.bash.enable = true;
   programs.bash.profileExtra = ''
     if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-      loginctl show-session $XDG_SESSION_ID -p Type -p Class -p State
-      echo "session: $XDG_SESSION_ID"
-      loginctl session-status
       echo "runtime: $XDG_RUNTIME_DIR"
-      ls -ld $XDG_RUNTIME_DIR
       echo "display: $DISPLAY"
       export XDG_RUNTIME_DIR="/run/user/$(id -u)"
       export DISPLAY=":0"
       export NIXOS_OZONE_WL="1"
+      echo "runtime: $XDG_RUNTIME_DIR"
+      echo "display: $DISPLAY"
       echo starting
       exec niri-session
     fi
